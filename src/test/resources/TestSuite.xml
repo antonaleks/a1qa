@@ -1,0 +1,140 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="test class Pen">
+
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+
+
+
+    <parameter name="inkContainerValue" value="500"/>
+    <parameter name="sizeLetter" value="5.0"/>
+    <parameter name="color" value="GREEN"/>
+    <test name="test Pen constructor not NULL" >
+
+        <parameter name="sizeLetter" value="5e+309"/>
+        <classes>
+            <class name="testPenConstructor_notNull" >
+            </class>
+        </classes>
+    </test>
+    <test name="test Pen doSomethingElse() should print Pen's color" >
+        <classes>
+            <class name="testPenDoSomethingElse_PrintColor" >
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="test Pen isWork() should return false" >
+        <parameter name="inkContainerValue" value="0"/>
+        <parameter name="isWork" value="false"/>
+        <classes>
+            <class name="testPenIsWork_shouldReturnBool" >
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() should return full input word" >
+        <parameter name="inputWord" value="fullInputWord"/>
+        <parameter name="outputWord" value="fullInputWord"/>
+        <classes>
+            <class name="testPenWrite_shouldReturnWord" >
+                <methods>
+                    <include name="testPenWrite" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() with empty parameter should return emty field" >
+        <parameter name="inputWord" value="      "/>
+        <parameter name="outputWord" value=""/>
+        <classes>
+            <class name="testPenWrite_shouldReturnWord" >
+                <methods>
+                    <include name="testPenWrite" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() should return part of input word" >
+        <parameter name="inputWord" value="partInputWord"/>
+        <parameter name="outputWord" value="part"/>
+        <parameter name="inkContainerValue" value="4"/>
+        <parameter name="sizeLetter" value="1.0"/>
+        <classes>
+            <class name="testPenWrite_shouldReturnWord" >
+                <methods>
+                    <include name="testPenWrite" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() with negative inkContainerValue should return empty field" >
+        <parameter name="inputWord" value="word"/>
+        <parameter name="outputWord" value=""/>
+        <parameter name="inkContainerValue" value="-25"/>
+        <parameter name="sizeLetter" value="-2.0"/>
+        <classes>
+            <class name="testPenWrite_shouldReturnWord" >
+                <methods>
+                    <include name="testPenWrite" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() should return empty field" >
+        <parameter name="inputWord" value="null"/>
+        <parameter name="outputWord" value=""/>
+        <classes>
+            <class name="testPenWrite_shouldReturnExceptions" >
+                <methods>
+                    <include name="testPenWrite_NullPointerException" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() with sizeLetter = 0  should return empty field" >
+        <parameter name="inputWord" value="word"/>
+        <parameter name="outputWord" value=""/>
+        <parameter name="sizeLetter" value="0"/>
+        <classes>
+            <class name="testPenWrite_shouldReturnExceptions" >
+                <methods>
+                    <include name="testPenWrite_NullPointerException" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="test Pen Write() with negative sizeLetter with second use method should return empty field" >
+        <parameter name="firstInputWord" value="word"/>
+        <parameter name="secondInputWord" value="word"/>
+        <parameter name="secondOutputWord" value=""/>
+        <parameter name="inkContainerValue" value="4"/>
+        <parameter name="sizeLetter" value="-1.0"/>
+        <classes>
+            <class name="testPenWrite_shouldReturnWord" >
+                <methods>
+                    <include name="testPenWrite_secondUse" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+
+
+    <test name="test Pen getColor() should return Pen's color" >
+        <classes>
+            <class name="testPenGetColor_EqualsColor" >
+            </class>
+        </classes>
+    </test>
+</suite>
