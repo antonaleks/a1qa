@@ -10,6 +10,7 @@ import java.util.Properties;
 public class PropertiesData {
     private static String url;
     private static String browser;
+    private static String nameFileCSV;
 
 
     private static int timeDelayImp;
@@ -34,6 +35,10 @@ public class PropertiesData {
         return browser;
     }
 
+    public static String getNameFileCSV() {
+        return nameFileCSV;
+    }
+
     static {
         Properties props = new Properties();
         try {
@@ -44,6 +49,7 @@ public class PropertiesData {
 
         url = props.getProperty("url");
         browser = props.getProperty("browser");
+        nameFileCSV = props.getProperty("nameFileCSV");
         timeDelayImp = Integer.valueOf(props.getProperty("timeDelayImp"));
         timeDelayExp = Integer.valueOf(props.getProperty("timeDelayExp"));
     }

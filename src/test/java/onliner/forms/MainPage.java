@@ -24,7 +24,7 @@ public class MainPage {
     private By navigationLinkListLocator = By.className("project-navigation__link");
     private By navigationTextListLocator = By.className("project-navigation__sign");
 
-    private static String pathToCsvFile = "src/test/resources/data.csv";
+    private static String pathToCsvFile = "src/test/resources/";
 
     public MainPage(WebDriver driver) {
 
@@ -70,9 +70,9 @@ public class MainPage {
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(text);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(pathToCsvFile), "UTF8"));
+                new FileOutputStream(pathToCsvFile+PropertiesData.getNameFileCSV()), "UTF8"));
         while (m.find()) {
-            bw.write(m.group());
+            bw.write(m.group()+"\n");
         }
         bw.flush();
 
