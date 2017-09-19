@@ -7,21 +7,23 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class Driver {
+public class BrowserFactory {
 
     public static WebDriver Instance = null;
+    private static String pathToFirefoxDriver = "src/test/resources/geckodriver.exe";
+    private static String pathToChromeDriver = "src/test/resources/chromedriver.exe";
 
     public static void Initialize() throws IOException {
         if(Instance == null){
-            if(PropertiesData.getBROWSER().equals("firefox")){
-                System.setProperty("webdriver.gecko.driver", PropertiesData.getPathToFirefoxDriver());
+            if(PropertiesData.getBrowser().equals("firefox")){
+                System.setProperty("webdriver.gecko.driver", pathToFirefoxDriver);
                 Instance = new FirefoxDriver();
             }
-            else if(PropertiesData.getBROWSER().equals("chrome")){
-                System.setProperty("webdriver.chrome.driver", PropertiesData.getPathToChromeDriver());
+            else if(PropertiesData.getBrowser().equals("chrome")){
+                System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
                 Instance = new ChromeDriver();
             }
-            else if(PropertiesData.getBROWSER().equals("ie")){
+            else if(PropertiesData.getBrowser().equals("ie")){
                 Instance = new InternetExplorerDriver();
             }
         }

@@ -24,8 +24,8 @@ public class ProductPage {
         }
     }
 
-    public HomePage goToHomePage(){
+    public MainPage goToHomePage(){
         driver.findElement(homeTitleLocator).click();
-        return new HomePage(driver);
+        return new MainPage(driver);
     }
 }

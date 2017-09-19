@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="test web-site">
-    <test name="run">
+<suite name="Test web-site onliner.by">
+    <test name="Test onliner.by">
         <classes>
             <class name="onliner.tests.TestWebSiteOnlinerBy"/>
         </classes>

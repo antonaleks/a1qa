@@ -21,16 +21,6 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    private LoginPage typeUsername(String username) {
-        driver.findElement(usernameLocator).sendKeys(username);
-        return this;
-    }
-
-    private LoginPage typePassword(String password) {
-        driver.findElement(passwordLocator).sendKeys(password);
-        return this;
-    }
-
     public UserPage goToUserPage(){
         driver.findElement(loginButtonLocator).submit();
         WebElement myDynamicElement = (new WebDriverWait(driver, PropertiesData.getTimeDelayExp()))
@@ -44,16 +34,15 @@ public class LoginPage {
         return new UserPage(driver);
     }
 
-
     public UserPage loginAs(String username, String password) {
-        typeUsername(username);
-        typePassword(password);
+        driver.findElement(usernameLocator).sendKeys(username);
+        driver.findElement(passwordLocator).sendKeys(password);
         return goToUserPage();
     }
 
-    public HomePage goToHomePage() {
+    public MainPage goToHomePage() {
         driver.findElement(homeTitleLocator).click();
-        return new HomePage(driver);
+        return new MainPage(driver);
     }
 
 }
