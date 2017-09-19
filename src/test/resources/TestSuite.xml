@@ -1,6 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Test web-site onliner.by">
     <test name="Test onliner.by">
+        <parameter name="login" value="gorlym2699@yandex.ru"/>
+        <parameter name="password" value="qwerty123"/>
         <classes>
             <class name="onliner.tests.TestWebSiteOnlinerBy"/>
         </classes>

@@ -9,10 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
-    private By usernameLocator = By.xpath("//div[@id='modal-auth']//input[@type='text']");
+    private By usernameLocator = By.xpath("//input[contains(@placeholder,\"Ник\")]");
     private By passwordLocator = By.xpath("//input[@type='password']");
-    private By loginButtonLocator = By.xpath("//button[contains(@class,\"auth-box__auth-submit\")]");
-    private By homeTitleLocator = By.xpath("//a[@class='auth-top__logo auth__icon auth__icon--logo']");
+    private By loginButtonLocator = By.xpath("//div[@id='auth-container__forms']//button");
+    private By homeTitleLocator = By.xpath("//div[@id='auth']//a[@href='http://www.onliner.by']");
 
 
     private final WebDriver driver;

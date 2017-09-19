@@ -9,8 +9,6 @@ import java.util.Properties;
 
 public class PropertiesData {
     private static String url;
-    private static String login;
-    private static String password;
     private static String browser;
 
 
@@ -28,20 +26,12 @@ public class PropertiesData {
         return timeDelayExp;
     }
 
-    public static String getLogin() {
-        return login;
-    }
-
     public static String getUrl() {
         return url;
     }
 
     public static String getBrowser() {
         return browser;
-    }
-
-    public static String getPassword() {
-        return password;
     }
 
     static {
@@ -53,8 +43,6 @@ public class PropertiesData {
         }
 
         url = props.getProperty("url");
-        login = props.getProperty("login");
-        password = props.getProperty("password");
         browser = props.getProperty("browser");
         timeDelayImp = Integer.valueOf(props.getProperty("timeDelayImp"));
         timeDelayExp = Integer.valueOf(props.getProperty("timeDelayExp"));

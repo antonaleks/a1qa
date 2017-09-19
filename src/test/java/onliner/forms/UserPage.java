@@ -17,10 +17,8 @@ public class UserPage {
 
     private final WebDriver driver;
 
-    private By menuWithLogOutLocator = By.xpath("//div[@id='userbar']//a[contains(@class,\"b-top-profile__preview\")]");
-    private By exitLinkLocator = By.xpath("//div[@class='b-top-actions']" +
-            "//div[@class='b-top-profile__part b-top-profile__part_2']" +
-            "//a[@class='b-top-profile__link b-top-profile__link_secondary']");
+    private By menuWithLogOutLocator = By.cssSelector("div.b-top-profile__image");
+    private By exitLinkLocator = By.xpath("//a[contains(@href,\"https://profile.onliner.by/logout\")]");
 
     public UserPage(WebDriver driver) {
         this.driver = driver;

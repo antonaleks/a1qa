@@ -28,7 +28,7 @@ public class BrowserFactory {
             }
         }
         Instance.manage().timeouts().implicitlyWait(PropertiesData.getTimeDelayImp(), TimeUnit.SECONDS);
-        Instance.manage().window().fullscreen();
+        Instance.manage().window().maximize();
     }
 
     public static void close(){

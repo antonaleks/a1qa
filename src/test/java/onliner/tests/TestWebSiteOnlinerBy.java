@@ -6,6 +6,7 @@ import onliner.forms.ProductPage;
 import onliner.forms.UserPage;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import framework.BrowserFactory;
 import framework.PropertiesData;
@@ -19,19 +20,19 @@ public class TestWebSiteOnlinerBy {
         BrowserFactory.Initialize();
     }
 
+    @Parameters({"login","password"})
     @Test
-    public void testWebSite() throws  IOException {
+    public void testWebSite(String login, String password) throws  IOException {
         BrowserFactory.Instance.navigate().to(PropertiesData.getUrl());
         MainPage homePage = new MainPage(BrowserFactory.Instance);
         LoginPage loginPage = homePage.loginIn();
-        UserPage userPage = loginPage.loginAs(PropertiesData.getLogin(),PropertiesData.getPassword());
+        UserPage userPage = loginPage.loginAs(login, password);
         loginPage = userPage.loginOut();
         homePage = loginPage.goToHomePage();
         ProductPage productPage = homePage.goToRandomProductPage();
         productPage.compareTypes();
         homePage = productPage.goToHomePage();
         homePage.getOpinions();
-
     }
 
 

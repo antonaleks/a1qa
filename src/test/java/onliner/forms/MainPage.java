@@ -10,9 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -22,9 +20,7 @@ import java.util.regex.Pattern;
 public class MainPage {
     private final WebDriver driver;
 
-    private By loginButtonLocator = By.xpath("//div[@class='b-top-actions']" +
-            "//div[@class='auth-bar__item auth-bar__item--text']");
-
+    private By loginButtonLocator = By.xpath("//div[text()='Вход ']");
     private By navigationLinkListLocator = By.className("project-navigation__link");
     private By navigationTextListLocator = By.className("project-navigation__sign");
 
@@ -58,8 +54,8 @@ public class MainPage {
         int index, iteration = 0;
         do{
         index = ran.nextInt(navigationLinkList.size()-1);
-        if(iteration++>=10) Assert.fail();
-        } while(!navigationLinkList.get(index).isEnabled() || iteration>10);
+        if(iteration++>=20) Assert.fail();
+        } while(!navigationLinkList.get(index).isEnabled() || iteration<20);
         String s = navigationTextList.get(index).getText();
         navigationLinkList.get(index).getAttribute("href");
         navigationLinkList.get(index).click();
@@ -73,15 +69,12 @@ public class MainPage {
         String text = driver.getPageSource();
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(text);
-        File file = new File(pathToCsvFile);
-        if(!file.exists()){
-        file.createNewFile();
-            }
-        PrintWriter out = new PrintWriter(file.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(pathToCsvFile), "UTF8"));
         while (m.find()) {
-            out.println(m.group());
+            bw.write(m.group());
         }
-        out.close();
+        bw.flush();
 
     }
 
