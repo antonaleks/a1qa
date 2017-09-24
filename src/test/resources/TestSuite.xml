@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test web-site steam.by">
+    <test name="Test steam.by">
+        <classes>
+            <class name="steam.tests.TestWebSiteSteam"/>
+        </classes>
+    </test>
+</suite>
