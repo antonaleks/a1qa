@@ -21,8 +21,8 @@ public class MainPage extends BaseForm{
     public MainPage() {
         super(By.xpath("//div[contains(@class,\"home_page_content\")]/h2"));
     }
-    public void checkLanguage(){
-        if(PropertiesManager.getLanguage().equals("eng")){
+    public void checkLanguage(String language){
+        if(PropertiesManager.getLanguage().equals(language)){
             lblLanguage.clickAndWait();
             new Label(By.xpath((String.format(englishLanguageLocator, PropertiesManager.getLanguage())))).clickAndWait();
         }
