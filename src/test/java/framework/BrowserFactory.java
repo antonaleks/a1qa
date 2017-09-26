@@ -6,8 +6,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,9 +24,6 @@ public class BrowserFactory {
     private static String pathToChromeDriver = "src/test/resources/chromedriver.exe";
     private static String pathToDownloads = "c:\\downloads";
 
-    public static String getPathToDownloads() {
-        return pathToDownloads;
-    }
 
     public static void Initialize() throws IOException {
         if(Instance == null){
@@ -36,7 +31,6 @@ public class BrowserFactory {
                 System.setProperty("webdriver.gecko.driver", pathToFirefoxDriver);
                 FirefoxProfile profile = new FirefoxProfile();
                 profile.setPreference("browser.download.folderList",2);
-                profile.setPreference("browser.download.manager.showWhenStarting",false);
                 profile.setPreference("browser.download.dir", pathToDownloads);
                 //указываем тип загружаемого файла
                 profile.setPreference("browser.helperApps.neverAsk.saveToDisk","application/octet-stream");

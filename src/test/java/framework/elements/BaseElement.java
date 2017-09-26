@@ -36,6 +36,10 @@ public abstract class BaseElement extends BaseEntity{
     public void sendKeys(String input){
         element.sendKeys(input);
     }
+    protected WebElement getElement(){
+        if(element==null)element = BrowserFactory.getInstance().findElement(locator);
+        return element;
+    }
 
     public boolean isEneabled(){
         return element.isEnabled();
@@ -55,6 +59,11 @@ public abstract class BaseElement extends BaseEntity{
     public void waitAndClick(){
         getDriverWait().until(ExpectedConditions.elementToBeClickable(element));
         element.click();
+    }
+
+    public String GetAttribute(String attribute){
+        getDriverWait().until(ExpectedConditions.elementToBeClickable(locator));
+        return getElement().getAttribute(attribute);
     }
     public void clickViaJS(){
         JavascriptExecutor executor = (JavascriptExecutor)BrowserFactory.getInstance();

@@ -1,15 +1,15 @@
 package framework;
 
+import framework.elements.Label;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public abstract class BaseEntity {
 
@@ -18,7 +18,7 @@ public abstract class BaseEntity {
     public void init() throws IOException {
         BrowserFactory.Initialize();
         BrowserFactory.getInstance().manage().window().maximize();
-        BrowserFactory.getInstance().navigate().to(PropertiesManager.getUrl());
+        navigateToUrl(PropertiesManager.getUrl());
     }
 
 
@@ -29,18 +29,41 @@ public abstract class BaseEntity {
         return driverWait;
     }
 
-    public void waitForFileDownload( String expectedFileName) throws IOException {
-        FluentWait<WebDriver> wait = new FluentWait(BrowserFactory.getInstance())
-                .withTimeout(PropertiesManager.getTimeDelayExp(), TimeUnit.SECONDS)
-                .pollingEvery(PropertiesManager.getTimeDelayImp(), TimeUnit.SECONDS);
-        File fileToCheck = new File(expectedFileName);
-
-        wait.until((WebDriver wd) -> fileToCheck.exists());
-
+    protected void navigateToUrl(String url){
+        BrowserFactory.getInstance().navigate().to(url);
+    }
+    protected String getPathToDownloadBrowser(){
+        String pathToDowloadsBrowse = "%s:downloads";
+        switch (PropertiesManager.getBrowser()){
+            case "chrome":
+                return String.format(pathToDowloadsBrowse,"chrome");
+            case "firefox":
+                return String.format(pathToDowloadsBrowse,"about");
+            default:
+                return "";
+        }
+    }
+    protected void waitForDownloadFileInBrowser(By firefoxLocator, By chromeLocator){
+        switch (PropertiesManager.getBrowser()){
+            case "chrome":
+                Label chromeDownloadFile = new Label(chromeLocator);
+                waitForExpretion(!chromeDownloadFile.isExist());
+                break;
+            case "firefox":
+                Label firefoxDownloadFile = new Label(firefoxLocator);
+                waitForExpretion(firefoxDownloadFile.GetAttribute("state").equals("1"));
+                break;
+        }
+    }
+    protected void waitForExpretion(boolean eneabled){
+        getDriverWait().until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return eneabled;
+            }
+        });
     }
 
-
-    public void assertEquals(String testValue, String validValue){
+    protected void assertEquals(String testValue, String validValue){
         Assert.assertEquals(testValue,validValue);
     }
 

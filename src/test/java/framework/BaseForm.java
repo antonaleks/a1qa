@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class BaseForm extends BaseEntity{
     protected boolean pageIsPresent;
 
-
+    public BaseForm(){}
     public BaseForm(By locator){
         this.pageIsPresent = PageIsPresent(locator);
     }

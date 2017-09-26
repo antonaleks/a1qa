@@ -2,7 +2,6 @@ package steam.forms;
 
 import framework.BaseForm;
 import framework.elements.Label;
-import javafx.scene.control.Tab;
 import org.openqa.selenium.By;
 import steam.forms.elements.TabElement;
 import steam.local.LocalManager;
@@ -30,7 +29,7 @@ public class ActionPage extends BaseForm{
     }
 
     public ActionPage(){
-        super(By.xpath("//div[contains(@class,\"responsive_local_menu\")]//a//span"),LocalManager.getActionPageDetect());
+        super(By.xpath("//div[contains(@class,\"responsive_local_menu\")]//a//span"),LocalManager.getLocalName("actionPageDetect"));
     }
     private int getIntDiscount(String discount){
         return Integer.parseInt(discount.substring(1,discount.length()-1));

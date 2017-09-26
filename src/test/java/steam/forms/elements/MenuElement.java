@@ -11,12 +11,12 @@ public class MenuElement {
     private String secondLevelItemLocator = "//div[@id='genre_flyout']//a[contains(@class,\"popup_menu_item\") and contains(text(),\"%s\")]";
 
     public enum TopLevelMenuItem{
-        YOUR_STORE(LocalManager.getMenuYourStore()),
-        GAMES(LocalManager.getMenuGames()),
-        SOFTWARE(LocalManager.getMenuSoftware()),
-        HARDWARE(LocalManager.getMenuHardware()),
-        VIDEOS(LocalManager.getMenuVideos()),
-        NEWS(LocalManager.getMenuNews());
+        YOUR_STORE(LocalManager.getLocalName("menuYourStore")),
+        GAMES(LocalManager.getLocalName("menuGames")),
+        SOFTWARE(LocalManager.getLocalName("menuSoftware")),
+        HARDWARE(LocalManager.getLocalName("menuHardware")),
+        VIDEOS(LocalManager.getLocalName("menuVideos")),
+        NEWS(LocalManager.getLocalName("menuNews"));
         private String name;
 
         TopLevelMenuItem(String text) {
